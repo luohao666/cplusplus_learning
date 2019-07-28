@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/snorker/Documents/luohao/c艹/stl/main.cpp
+iostream
+-
+mystl.h
+/home/snorker/Documents/luohao/c艹/stl/mystl.h
+
+/home/snorker/Documents/luohao/c艹/stl/mystl.h
+iostream
+-
+ctime
+-
+set
+-
+map
+-
+unordered_set
+-
+unordered_map
+-
+
