@@ -96,21 +96,8 @@ int main(int argc,char* argv[])
     //LCS
     string s1="ABCBDAB";
     string s2="BDCABA";
-    vector<vector<int> > index;
-    cout<<dp_lcs(s1,s2,index)<<endl;
-    vector<char> s;
-    int m=s1.length();
-    int n=s2.length();
-    get_lcs(index,s1,m,n,s);
-    for(int i=0;i<s.size();i++)
-        cout<<s[i]<<endl;
+    cout<<dp_lcs(s1,s2)<<endl;
 
-    vector<vector<int> > a;
-    vector<char> ss;
-    a=dp_lcs(s1,s2);
-    get_lcs2(a,s1,m,n,ss);
-    for(int i=0;i<ss.size();i++)
-        cout<<ss[i]<<endl;
 
     return 0;
 }
