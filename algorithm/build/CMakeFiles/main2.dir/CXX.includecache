@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/main2.cpp
+iostream
+-
+vector
+-
+algorithm
+-
+string
+-
+map
+-
+

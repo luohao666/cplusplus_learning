@@ -1,3 +1,5 @@
-/home/luohao/Documents/C++/cplusplus_learning/algorithm/build/CMakeFiles/rebuild_cache.dir
-/home/luohao/Documents/C++/cplusplus_learning/algorithm/build/CMakeFiles/edit_cache.dir
-/home/luohao/Documents/C++/cplusplus_learning/algorithm/build/CMakeFiles/main.dir
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/build/CMakeFiles/edit_cache.dir
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/build/CMakeFiles/main.dir
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/build/CMakeFiles/main1.dir
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/build/CMakeFiles/main2.dir
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/build/CMakeFiles/rebuild_cache.dir

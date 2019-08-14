@@ -93,6 +93,7 @@ int main(int argc,char* argv[])
     cout<<dp_step_square(map,2,3)<<endl;
 */
 
+/* 
     //LCS
     string s1="ABCBDAB";
     string s2="BDCABA";
@@ -111,6 +112,71 @@ int main(int argc,char* argv[])
     get_lcs2(a,s1,m,n,ss);
     for(int i=0;i<ss.size();i++)
         cout<<ss[i]<<endl;
+*/
+
+/* 
+    string s="javaej";
+    cout<<dp_lps(s)<<endl;
+*/
+
+/* 
+    int a[9]={2,4,-7,5,2,-1,2,-4,3};
+    vector<int> v(a,a+9);
+    cout<<max_subarray(v)<<endl;
+*/
+
+/* 
+    int a[9]={3,1,4,1,5,9,2,6,5};
+    vector<int> v(a,a+9);
+    cout<<dp_lis(v)<<endl;
+*/
+
+/* 
+    int a[11]={1,3,0,5,3,5,6,8,8,2,12};
+    vector<int> v1(a,a+11);
+    int a2[11]={4,5,6,7,8,9,10,11,12,13,14};
+    vector<int> v2(a2,a2+11);
+    cout<<greedy_activity_selector(v1,v2)<<endl;
+*/
+
+/* 
+    int a[4]={1,2,4,5};
+    vector<int> n_time(a,a+4);
+    cout<<solve_boat(n_time)<<endl;
+*/
+
+/* 
+    //int a[5]={3,2,1,0,4};
+    int a[5]={2,3,1,1,4};
+    vector<int> data(a,a+5);
+    cout<<solve_jump(data)<<endl;
+    cout<<sovle_jump2(data)<<endl;
+*/
+
+/* 
+    int a[4]={10,2,1,6};
+    vector<int> starts(a,a+4);
+    int a2[4]={16,8,6,12};
+    vector<int> ends(a2,a2+4);
+    cout<<min_arrows(starts,ends)<<endl;
+*/
+
+/* 
+    int a[6]={5,10,2,9,15,9};
+    vector<int> childs(a,a+4);
+    int a2[5]={6,1,20,3,8};
+    vector<int> cookies(a2,a2+4);
+    cout<<solve_cookie(childs,cookies)<<endl;
+*/
+
+/* 
+    int a[10]={1,17,5,10,13,15,10,5,16,8};
+    vector<int> data(a,a+10);
+    cout<<solve_wiggle(data)<<endl;
+*/
+
+    string s="56317";
+    cout<<remove_k_nums(s,3)<<endl;
 
     return 0;
 }
