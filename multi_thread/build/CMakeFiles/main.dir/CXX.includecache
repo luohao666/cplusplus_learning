@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/luohao/Documents/c++/multi_thread/main.cpp
+iostream
+-
+thread
+-
+chrono
+-
+string
+-
+mutex
+-
+fstream
+-
+queue
+-
+condition_variable
+-
+
