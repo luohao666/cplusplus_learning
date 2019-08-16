@@ -48,13 +48,24 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/luohao/Documents/C++/cplusplus_learning/algorithm
+CMAKE_SOURCE_DIR = /home/snorker/Documents/luohao/cplusplus_learning/algorithm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/luohao/Documents/C++/cplusplus_learning/algorithm/build
+CMAKE_BINARY_DIR = /home/snorker/Documents/luohao/cplusplus_learning/algorithm/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -67,22 +78,11 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luohao/Documents/C++/cplusplus_learning/algorithm/build/CMakeFiles /home/luohao/Documents/C++/cplusplus_learning/algorithm/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/snorker/Documents/luohao/cplusplus_learning/algorithm/build/CMakeFiles /home/snorker/Documents/luohao/cplusplus_learning/algorithm/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luohao/Documents/C++/cplusplus_learning/algorithm/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/snorker/Documents/luohao/cplusplus_learning/algorithm/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,6 +123,32 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+#=============================================================================
+# Target rules for targets named main1
+
+# Build rule for target.
+main1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 main1
+.PHONY : main1
+
+# fast build rule for target.
+main1/fast:
+	$(MAKE) -f CMakeFiles/main1.dir/build.make CMakeFiles/main1.dir/build
+.PHONY : main1/fast
+
+#=============================================================================
+# Target rules for targets named main2
+
+# Build rule for target.
+main2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 main2
+.PHONY : main2
+
+# fast build rule for target.
+main2/fast:
+	$(MAKE) -f CMakeFiles/main2.dir/build.make CMakeFiles/main2.dir/build
+.PHONY : main2/fast
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -150,18 +176,80 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+main1.o: main1.cpp.o
+
+.PHONY : main1.o
+
+# target to build an object file
+main1.cpp.o:
+	$(MAKE) -f CMakeFiles/main1.dir/build.make CMakeFiles/main1.dir/main1.cpp.o
+.PHONY : main1.cpp.o
+
+main1.i: main1.cpp.i
+
+.PHONY : main1.i
+
+# target to preprocess a source file
+main1.cpp.i:
+	$(MAKE) -f CMakeFiles/main1.dir/build.make CMakeFiles/main1.dir/main1.cpp.i
+.PHONY : main1.cpp.i
+
+main1.s: main1.cpp.s
+
+.PHONY : main1.s
+
+# target to generate assembly for a file
+main1.cpp.s:
+	$(MAKE) -f CMakeFiles/main1.dir/build.make CMakeFiles/main1.dir/main1.cpp.s
+.PHONY : main1.cpp.s
+
+main2.o: main2.cpp.o
+
+.PHONY : main2.o
+
+# target to build an object file
+main2.cpp.o:
+	$(MAKE) -f CMakeFiles/main2.dir/build.make CMakeFiles/main2.dir/main2.cpp.o
+.PHONY : main2.cpp.o
+
+main2.i: main2.cpp.i
+
+.PHONY : main2.i
+
+# target to preprocess a source file
+main2.cpp.i:
+	$(MAKE) -f CMakeFiles/main2.dir/build.make CMakeFiles/main2.dir/main2.cpp.i
+.PHONY : main2.cpp.i
+
+main2.s: main2.cpp.s
+
+.PHONY : main2.s
+
+# target to generate assembly for a file
+main2.cpp.s:
+	$(MAKE) -f CMakeFiles/main2.dir/build.make CMakeFiles/main2.dir/main2.cpp.s
+.PHONY : main2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main"
+	@echo "... main1"
+	@echo "... main2"
+	@echo "... rebuild_cache"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... main1.o"
+	@echo "... main1.i"
+	@echo "... main1.s"
+	@echo "... main2.o"
+	@echo "... main2.i"
+	@echo "... main2.s"
 .PHONY : help
 
 

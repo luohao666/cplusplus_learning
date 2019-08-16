@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/luohao/Documents/C++/cplusplus_learning/algorithm/main.cpp
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/main.cpp
 iostream
 -
 vector
@@ -14,15 +14,15 @@ vector
 algorithm
 -
 my_algorithm.h
-/home/luohao/Documents/C++/cplusplus_learning/algorithm/my_algorithm.h
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/my_algorithm.h
 
-/home/luohao/Documents/C++/cplusplus_learning/algorithm/my_algorithm.h
+/home/snorker/Documents/luohao/cplusplus_learning/algorithm/my_algorithm.h
 iostream
 -
 vector
 -
-array
--
 string
+-
+algorithm
 -
 
