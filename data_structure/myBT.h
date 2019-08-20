@@ -254,37 +254,21 @@ void level(TreeNode* root)
     queue<TreeNode*> q;
     q.push(root);
 
+    int levels=0;
     while(!q.empty())
     {
-        TreeNode* cur=q.front();q.pop();
-        cout<<cur->val<<endl;
+        levels=q.size();
+        for(int i=0;i<levels;i++)
+        {
+            TreeNode* cur=q.front();q.pop();
+            cout<<cur->val<<endl;
 
-        if(cur->left)
-            q.push(cur->left);
-        
-        if(cur->right)
-            q.push(cur->right);
-    }
-}
+            if(cur->left)
+                q.push(cur->left);
+            if(cur->right)
+                q.push(cur->right);
+        }
 
-//深度遍历和先序遍历是一样的
-void deep(TreeNode* root)
-{
-    if(!root)
-        return;
-    
-    stack<TreeNode*> s;
-    s.push(root);
-
-    while(!s.empty())
-    {
-        TreeNode* cur=s.top();s.pop();
-        cout<<cur->val<<endl;
-
-        if(cur->right)
-            s.push(cur->right);
-        if(cur->left)
-            s.push(cur->left);
     }
 }
 
@@ -303,4 +287,15 @@ void createBT(TreeNode* root)
 	}
 }
 */
+
+/************************************************* */
+/*二叉树与递归 */
+/************************************************* */
+
+//树的子结构
+//二叉树的镜像
+//二叉搜索树的后序遍历序列
+//平衡二叉树
+//对称二叉树
+
 #endif

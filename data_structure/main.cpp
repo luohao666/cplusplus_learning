@@ -3,6 +3,8 @@
 #include "myBT.h"
 #include "myList.h"
 #include "mySearch.h"
+#include "mystr.h"
+#include "my.h"
 
 using namespace std;
 
@@ -50,20 +52,29 @@ int main(int argc,char* argv[])
 //    cout<<weight<<endl;
 //    cout<<sum/weight<<endl;
 
-/*
+ /* 
     cout<<"myList"<<endl;
-    ListNode<int>* root= new ListNode<int>(1);
+    ListNode<int>* root= new ListNode<int>(7);
     root->next=new ListNode<int>(4);
-    root->next->next=new ListNode<int>(7);
+    root->next->next=new ListNode<int>(1);
     cout<<"list:"<<endl;
     print(root);
+
+    selectSort(root);
+//    ListNode<int>* end=NULL;
+//    quickSortLinkList(root,end);
+    print(root);
+
 */
+
+
     /* 
     ListNode<int>* inv= NULL;
     inv=inverse(root);
     cout<<"invlist:"<<endl;
     print(inv);
     */
+
 /* 
     ListNode<int>* root2= new ListNode<int>(2);
     root2->next=new ListNode<int>(5);
@@ -81,8 +92,37 @@ int main(int argc,char* argv[])
     cout<<"find:"<<endl;
     print(find);
 */
+
+/* 
     int aa[5]={1,2,3,4,5};
     vector<int> data(aa,aa+5);
     cout<<binarySearch(data,0)<<endl;
+*/
+
+/* 
+    char* src="hello";
+    char dst[6];
+    char* res;
+    res=strcpy(dst,src);
+    cout<<strlen(res)<<endl;
+    for(int i=0;i<strlen(res);i++)
+        cout<<res[i];
+    cout<<endl;
+*/
+
+/* 
+    //int aa[5]={5,1,2,3,4};
+    int aa[5]={1,0,1,1,1};
+    vector<int> data(aa,aa+5);
+    cout<< minv_rotate_array(data) <<endl;
+*/
+
+    int aa[5]={1,2,3,4,5};
+    vector<int> data(aa,aa+5);
+    reOrderArray(data);
+    for(int i=0;i<data.size();i++)
+        cout<<data[i];
+    cout<<endl;
+
     return 0;
 }

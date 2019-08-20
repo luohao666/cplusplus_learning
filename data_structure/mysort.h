@@ -11,7 +11,13 @@ class mysort
 {
     public:
         template<typename T>
-        static void normalSort(vector<T>& data);\
+        static void normalSort(vector<T>& data);
+        template<typename T>
+        static void selectSort(vector<T>& data);
+        template<typename T>
+        static void bubbleSort(vector<T>& data);
+        template<typename T>
+        static void bubbleSort2(vector<T>& data);
         template<typename T>
         static void print(const vector<T>& data);
 
@@ -41,7 +47,67 @@ void mysort::normalSort(vector<T>& data)
             }
         }
 }
- 
+
+template<typename T>
+void mysort::selectSort(vector<T>& data)
+{
+    const int N=data.size();
+    for(int i=0;i<N;i++)
+    {
+        int min=i;
+        for(int j=i+1;j<N;j++)
+        {
+            if(data[min]>data[j])
+            {
+                min=j;
+            }
+        }
+        T temp;
+        temp=data[i];
+        data[i]=data[min];
+        data[min]=temp;
+    }
+}
+
+template<typename T>
+void mysort::bubbleSort(vector<T>& data)
+{
+    const int N=data.size();
+    for(int i=0;i<N;i++)
+        for(int j=0;j<N-i;j++)
+        {
+            if(data[j]>data[j+1])
+            {
+                T temp;
+                temp=data[i];
+                data[i]=data[j];
+                data[j]=temp;
+            }
+        }
+}
+
+template<typename T>
+void mysort::bubbleSort2(vector<T>& data)
+{
+    const int N=data.size();
+    bool flag=true;
+    for(int i=0;i<N&&flag;i++)
+    {
+        flag=false;
+        for(int j=0;j<N-i;j++)
+        {
+            if(data[j]>data[j+1])
+            {
+                flag=true;
+                T temp;
+                temp=data[j];
+                data[j+1]=temp;
+                data[j]=temp;
+            }
+        }
+    }
+}
+
 template<typename T>
 int partion(vector<T>& data,int start,int end)
 {
@@ -138,4 +204,7 @@ void mergeSort(vector<T> &data,int start,int end,vector<T> &copy)
         data[i]=copy[i];
     }
 }
+
+//堆排序
+
 #endif

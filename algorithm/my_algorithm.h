@@ -53,13 +53,136 @@ vector<vector<int> > dp_01bag(const vector<Bag>& bags,int limitWeight)
             }
             else
             {
-                if(bags[i-1]._weight>j)
+                if(bags[i-1]._weight>j)//要不要第i个物品
                     a[i][j]=a[i-1][j];
                 else
                     a[i][j]=max(a[i-1][j],a[i-1][j-bags[i-1]._weight]+bags[i-1]._value);
             }
         }
+    
+    /* 
+    //we need best bags and nums
+    vector<int> res(numsOfBags,0);
+    int i=numsOfBags;//包的种类
+    int j=limitWeight;//
+    while(i)
+    {
+        if(a[i][j] == (a[i-1][j-bags[i-1]._weight]+bags[i-1]._value))
+        {
+            res[i-1] = 1;
+            j = j-bags[i-1]._weight;
+        }
+        i--;
+    }
+
+    for(int ii=0;ii<res.size();ii++)
+        cout<<res[ii]<<" ";
+    cout<<endl;
+    */
+   
     return a;
+}
+
+vector<vector<int> > dp_allbag(const vector<Bag>& bags,int limitWeight)
+{
+    //2D vector dp[i][j]:背包容量为j,前i个物品的最佳组合价值
+    int m=bags.size()+1;
+    int n=limitWeight+1;
+    vector<vector<int> > dp(m,vector<int>(n,0));
+
+    //init
+    
+    for(int i=1;i<m;i++)
+    {
+        for(int j=1;j<n;j++)
+        {
+            if(j<bags[i-1]._weight)
+                dp[i][j]=dp[i-1][j];
+            else
+                dp[i][j]=max(dp[i-1][j],dp[i][j-bags[i-1]._weight]+bags[i-1]._value);
+        }
+    }
+
+    /*   
+    //we need best bags and nums
+    vector<int> res(m-1,0);
+    int i=m-1;//包的种类
+    int j=n-1;//
+    while(i)
+    {
+        if(dp[i][j] == (dp[i][j-bags[i-1]._weight]+bags[i-1]._value))
+        {
+            res[i-1]++;
+            j = j-bags[i-1]._weight;
+        }
+        i--;
+    }
+
+
+    // if(a[1][j])//res[0]计算
+    // {
+    //     res[0] = 1;
+    // }
+
+    for(int ii=0;ii<res.size();ii++)
+        cout<<res[ii]<<" ";
+    cout<<endl;
+    */
+    return dp;
+}
+
+vector<vector<int> > dp_multibag(const vector<Bag>& bags,int limitWeight,const vector<int>& bags_num)
+{
+    //2D vector dp[i][j]:背包容量为j,前i个物品的最佳组合价值
+    int m=bags.size()+1;
+    int n=limitWeight+1;
+    vector<vector<int> > dp(m,vector<int>(n,0));
+
+    //init
+    for(int i=1;i<m;i++)
+    {
+        for(int j=1;j<n;j++)
+        {
+            if(j<bags[i-1]._weight)
+                dp[i][j]=dp[i-1][j];
+            else
+            {
+                dp[i][j]=dp[i-1][j];
+                int count=min(bags_num[i-1],j/bags[i-1]._weight);//计算k的最大次数
+                for(int k=1;k<=count;k++)
+                {
+                    int temp=dp[i-1][j-k*bags[i-1]._weight]+k*bags[i-1]._value;
+                    if(temp>dp[i][j])
+                        dp[i][j]=temp;
+                }
+            }
+        }
+    }
+
+    //we need best bags and nums
+    vector<int> res(m-1,0);
+    int i=m-1;//包的种类
+    int j=n-1;//
+    while(i)
+    {
+        int count=min(bags_num[i-1],j/bags[i-1]._weight);//计算k的最大次数
+        for(int k = count; k > 0; k--)
+        {
+            if(dp[i][j] == (dp[i-1][j-k*bags[i-1]._weight]+k*bags[i-1]._value))
+            {
+                res[i-1] = k;
+                j = j-k*bags[i-1]._weight;
+                break;
+            }
+        }
+        i--;
+    }
+
+    for(int ii=0;ii<res.size();ii++)
+        cout<<res[ii]<<" ";
+    cout<<endl;
+
+    return dp;
 }
 
 vector<Bag> get_best_bags(const vector<Bag>& bags, const vector<vector<int> >& a)
@@ -81,6 +204,8 @@ vector<Bag> get_best_bags(const vector<Bag>& bags, const vector<vector<int> >& a
             cout<<a[i-1][cols-1]<<endl;
             best_bags.push_back(bags[i-1]);
             temp_value-=bags[i-1]._value;
+
+            cols-=bags[i-1]._weight;
         }
     }
     return best_bags;
@@ -139,7 +264,6 @@ int dp_penny(const vector<int>& penny,int aim)
     
     vector<vector<int> > a(n,vector<int>(m,0));
 
-
     //init
     for(int i=1;i<n;i++)
     {
@@ -171,6 +295,7 @@ int dp_penny(const vector<int>& penny,int aim)
                 a[i][j]=a[i-1][j];
             }
         }
+
     return a[n-1][m-1];
 }
 
@@ -351,6 +476,8 @@ int dp_lcsubstring(string s1,string s2)
     //init
 
     //
+    int maxlen=0;
+    int maxend=0;
     for(int i=1;i<m;i++)
         for(int j=1;j<n;j++)
         {
@@ -358,44 +485,18 @@ int dp_lcsubstring(string s1,string s2)
                 a[i][j]=a[i-1][j-1]+1;
             else
             ;
+
+            if(a[i][j]>maxlen)
+            {
+                maxlen=a[i][j];
+                maxend=i;
+            }
         }
-    
+        //s1.substr(maxend-maxlen+1,maxlen);
     return a[m-1][n-1];
 }
 
 //longest palindrome subsequence,LPS
-/*
-1***
-*1**
-**1*
-***1
- */
-int dp_lps(string s)
-{
-    //2D array
-    int n=s.length();
-    vector<vector<int> > a(n,vector<int>(n,0));
-    
-    //init
-    for(int i=0;i<n;i++)
-    {
-        a[i][i]=1;
-    }
-
-    for(int len=2;len<=n;len++)
-        for(int i=0;i<n;i++)
-        {
-            int j=i+len-1;
-            if(j<n)
-            {
-                if(s[i]==s[j])
-                    a[i][j]=a[i+1][j-1]+2;
-                else
-                    a[i][j]=max(a[i+1][j],a[i][j-1]);
-            }
-        }
-    return a[0][n-1];
-}
 
 //最大连续子数组
 //a[i]=max(a[i-1]+v[i],v[i])
@@ -418,32 +519,52 @@ int max_subarray(vector<int> v)
     return max;
 }
 
-//最长递增子序列
-//a[i]=max{a[i-1]},if a[i]<=a[j],j=0,,,i-1
-//a[i]=max{a[i-1]}+1,if a[i]>a[j]
-int dp_lis(vector<int> v)
+//更加清晰一点
+int max_subarray2(const vector<int>& v)
 {
     //1D array
     int n=v.size();
-    vector<int> a(n,1);
+    vector<int> dp(n,0);
+    dp[0]=v[0];
 
-    //init
-
-    for(int i=1;i<n;i++)
+    for(int i=0;i<n;i++)
     {
-        bool flag=true;
-        for(int j=0;j<i;j++)
-        {
-            if(v[i]<=v[j])
-                flag=false;
-        }
-        if(flag)
-            a[i]=a[i-1]+1;
-        else
-            a[i]=a[i-1];
+        dp[i]=max(dp[i-1]+v[i],v[i]);//以v[i]结尾的最大子数组和
     }
-    return a[n-1];
+
+    sort(dp.begin(),dp.end());
+    return dp[dp.size()-1];    
 }
+
+//乘积数组
+vector<int> multiply(const vector<int>& A)
+{
+    //定义左边右边两个数组
+    const int n=A.size();
+    vector<int> left(n,0);
+    vector<int> right(n,0);
+    vector<int> res(n,0);
+
+    //left[0]=1;
+    left[0]=1;
+    for(int i=1;i<n;i++)
+        left[i]=left[i-1]*A[i-1];
+
+    //right[n-1]=1
+    right[n-1]=1;
+    for(int i=n-2;i>=0;i++)
+        right[i]=right[i+1]*A[i+1];
+
+    for(int i=0;i<n;i++)
+        res[i]=left[i]*right[i];
+    
+    return res;
+}
+
+//最长递增子序列
+//a[i]=max{a[i-1]},if a[i]<=a[j],j=0,,,i-1
+//a[i]=max{a[i-1]}+1,if a[i]>a[j]
+
 
 //字符串最短编辑距离
 
@@ -733,5 +854,11 @@ string remove_k_nums(string s,int k)
 }
 
 //旅行商问题
+
+/***************************************************************************/
+/*回溯法*/
+/***************************************************************************/
+
+//已知一个数为C，一个长度为n的无序的数组，分别是数w1,w2,...,wn，能否从这n个数中找到若干个数使其和等于数C,要求找出所有满足上述条件的解
 
 #endif

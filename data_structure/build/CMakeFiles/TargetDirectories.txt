@@ -1,3 +1,3 @@
-/home/snorker/Documents/luohao/c艹/data_structure/build/CMakeFiles/rebuild_cache.dir
-/home/snorker/Documents/luohao/c艹/data_structure/build/CMakeFiles/edit_cache.dir
-/home/snorker/Documents/luohao/c艹/data_structure/build/CMakeFiles/main.dir
+/home/snorker/Documents/luohao/cplusplus_learning/data_structure/build/CMakeFiles/rebuild_cache.dir
+/home/snorker/Documents/luohao/cplusplus_learning/data_structure/build/CMakeFiles/edit_cache.dir
+/home/snorker/Documents/luohao/cplusplus_learning/data_structure/build/CMakeFiles/main.dir

@@ -19,7 +19,7 @@ int main(int argc,char* argv[])
     cout<<k<<endl;
 */
 
-/*
+
 //读指定的n个数据
     int n;
     vector<int> data1;
@@ -52,14 +52,18 @@ int main(int argc,char* argv[])
     bags=make_bags(data1,data2);
     vector<vector<int> > a;
     a=dp_01bag(bags,T); 
+    //a=dp_allbag(bags,T);
+
+/* 
     for(int i=0;i<a.size();i++)
         for(int j=0;j<a[0].size();j++)
         {
             cout<<a[i][j]<<endl;
         }
+*/
 
-    vector<Bag> best_bags;
-    best_bags=get_best_bags(bags,a);
+ //   vector<Bag> best_bags;
+ //   best_bags=get_best_bags(bags,a);
 
     //test
     // cout<<best_bags.size()<<endl;
@@ -68,8 +72,25 @@ int main(int argc,char* argv[])
     //     cout<<best_bags[i]._weight<<" ";
     //     cout<<best_bags[i]._value<<endl;
     // }
-*/
 
+/* 
+    int a1[3]={10,5,2};
+    vector<int> bags_num(a1,a1+3);
+    int a2[3]={1,2,2};
+    vector<int> W(a2,a2+3);
+    int a3[3]={6,10,20};
+    vector<int> V(a3,a3+3);
+    vector<Bag> bags;
+    bags=make_bags(W,V);
+    vector<vector<int> > a;
+    a=dp_multibag(bags,8,bags_num);
+    //test
+    for(int i=0;i<a.size();i++)
+        for(int j=0;j<a[0].size();j++)
+        {
+            cout<<a[i][j]<<endl;
+        }
+*/
     //3 people 3 times
 //    cout<<dp_jgch(3,3)<<endl;
 
@@ -175,8 +196,9 @@ int main(int argc,char* argv[])
     cout<<solve_wiggle(data)<<endl;
 */
 
+/* 
     string s="56317";
     cout<<remove_k_nums(s,3)<<endl;
-
+*/
     return 0;
 }
