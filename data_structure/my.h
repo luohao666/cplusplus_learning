@@ -175,7 +175,7 @@ vector<vector<int> > findContinuousSequence(int sum)
         if(cur<sum)
             right++;
         if(cur>sum)
-            right--;
+            left++;
     }
     return res;
 }

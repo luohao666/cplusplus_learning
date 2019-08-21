@@ -19,7 +19,7 @@ int main(int argc,char* argv[])
     cout<<k<<endl;
 */
 
-
+/* 
 //读指定的n个数据
     int n;
     vector<int> data1;
@@ -53,6 +53,7 @@ int main(int argc,char* argv[])
     vector<vector<int> > a;
     a=dp_01bag(bags,T); 
     //a=dp_allbag(bags,T);
+*/
 
 /* 
     for(int i=0;i<a.size();i++)
@@ -200,5 +201,9 @@ int main(int argc,char* argv[])
     string s="56317";
     cout<<remove_k_nums(s,3)<<endl;
 */
+
+    int a[10]={2,5,2,1,2};
+    vector<int> data(a,a+5);
+    CombSum(data,5);
     return 0;
 }

@@ -158,7 +158,6 @@ vector<vector<int> > dp_multibag(const vector<Bag>& bags,int limitWeight,const v
             }
         }
     }
-
     //we need best bags and nums
     vector<int> res(m-1,0);
     int i=m-1;//包的种类
@@ -527,7 +526,7 @@ int max_subarray2(const vector<int>& v)
     vector<int> dp(n,0);
     dp[0]=v[0];
 
-    for(int i=0;i<n;i++)
+    for(int i=1;i<n;i++)
     {
         dp[i]=max(dp[i-1]+v[i],v[i]);//以v[i]结尾的最大子数组和
     }
@@ -617,6 +616,7 @@ int greedy_activity_selector(const vector<int>& v1,const vector<int>& v2)
 //count={3,0,2,1,0,3,5}
 //value={1,2,5,10,20,50,100}
 //支付K元，至少???
+/*优先选择大面值 */
 int solve_money(const vector<int>& counts,const vector<int>& values,int K)
 {
     const int N=counts.size();
@@ -637,6 +637,7 @@ int solve_money(const vector<int>& counts,const vector<int>& values,int K)
 
 //小船过河
 //一只船乘两人，载n人过河
+/*把速度最慢的两人带过去有两种方法 */
 int solve_boat(const vector<int>& n_time)
 {
     //n_time已经排序完成哦
@@ -681,6 +682,7 @@ bool solve_jump(const vector<int>& data)
         return true;
     return false;
 }
+
 //跳跃到最后的最小次数
 //贪心思想:尽量不跳，逼不得已再跳
 int sovle_jump2(const vector<int>& data)
@@ -689,12 +691,12 @@ int sovle_jump2(const vector<int>& data)
         return data.size();
 
     int num=1;
-    int cur_len=data[0];
-    int pre_len=data[0];
+    int cur_len=data[0];//当前能够到达的距离
+    int pre_len=data[0];//能够跳的最远距离
 
     for(int i=1;i<data.size();i++)
     {
-        if(i>cur_len)
+        if(i>cur_len)//i,cur过程中要跳一次
         {
             cur_len=pre_len;
             num++;
@@ -817,6 +819,11 @@ int solve_wiggle(const vector<int>& data)
 //移除k个数字
 //178543 4
 //13
+//178543
+//17543
+//1543
+//143
+//13
 string remove_k_nums(string s,int k)
 {
     string res="";
@@ -827,7 +834,7 @@ string remove_k_nums(string s,int k)
     
     for(int i=1;i<=k;i++)
     {
-        for(int j=0;j<n-i;j++)
+        for(int j=0;j<n-i;j++)//前n-i最小
         {
             if(data[j]<data[j+1])
                 continue;
@@ -838,7 +845,7 @@ string remove_k_nums(string s,int k)
             }
         }
 
-        for(int j=0;j<n-i;j++)
+        for(int j=0;j<n-i;j++)//把a移动到最后
         {
             if(data[j]=='a')
             {
@@ -860,5 +867,89 @@ string remove_k_nums(string s,int k)
 /***************************************************************************/
 
 //已知一个数为C，一个长度为n的无序的数组，分别是数w1,w2,...,wn，能否从这n个数中找到若干个数使其和等于数C,要求找出所有满足上述条件的解
+
+/***************************************************************************/
+/*DFS*/
+/***************************************************************************/
+
+//组合数
+
+//数组，目标数，开始索引，临时数组，输出结果
+void dfs(vector<int>& data,int target,int start,vector<int>& temp,vector<vector<int> >& res)
+{
+    if(target<0)
+        return;
+    else if(target==0)
+    {
+        res.push_back(temp);
+        for(int i=0;i<temp.size();i++)
+            cout<<temp[i];
+        cout<<endl;
+        return;
+    }
+    else
+    {
+        for(int i=start;i<data.size();i++)
+        {
+//            if(i>start&&data[i]==data[i-1])
+//                continue;
+            temp.push_back(data[i]);
+            dfs(data,target-data[i],i+1,temp,res);//若无限制次数则i+1->i
+            temp.pop_back();
+        }
+    }
+}
+
+vector<vector<int> > CombSum(vector<int>& data,int target)
+{
+    vector<vector<int> > res;
+    if(data.empty())
+        return res;
+    
+    vector<int> temp;
+    sort(data.begin(),data.end());
+    dfs(data,target,0,temp,res);
+    return res;
+}
+
+//字符串的全排列
+void swap(char& a,char& b)
+{
+    char temp;
+    temp=a;
+    a=b;
+    b=temp;
+}
+
+void dfs(string str,int start,vector<string> &res)
+{
+    //退出条件
+    if(start==str.size()-1)
+    {
+        if(find(res.begin(),res.end(),str)==res.end())
+            res.push_back(str);
+    }
+    else
+    {
+        for(int i=start;i<str.size();i++)
+        {
+            swap(str[start],str[i]);
+            dfs(str,i+1,res);
+            swap(str[start],str[i]);
+        }
+    }
+    
+}
+
+vector<string> Permutation(string str)
+{
+    vector<string> res;
+    if(str.empty())
+        return res;
+    
+    dfs(str,0,res);
+    sort(res.begin(),res.end());
+    return res;
+}
 
 #endif
