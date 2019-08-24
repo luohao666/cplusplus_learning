@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/luohao/Documents/C++/houjie/complex.h
+iostream
+-
+
+/home/luohao/Documents/C++/houjie/main.cpp
+complex.h
+/home/luohao/Documents/C++/houjie/complex.h
+iostream
+-
+mystring.h
+/home/luohao/Documents/C++/houjie/mystring.h
+
+/home/luohao/Documents/C++/houjie/mystring.h
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
+iostream
+-
+
