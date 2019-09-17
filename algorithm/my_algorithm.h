@@ -617,6 +617,7 @@ int greedy_activity_selector(const vector<int>& v1,const vector<int>& v2)
 //value={1,2,5,10,20,50,100}
 //支付K元，至少???
 /*优先选择大面值 */
+
 int solve_money(const vector<int>& counts,const vector<int>& values,int K)
 {
     const int N=counts.size();
@@ -663,6 +664,7 @@ int solve_boat(const vector<int>& n_time)
 
 //跳跃问题
 //能否跳到最后位置
+//32104
 bool solve_jump(const vector<int>& data)
 {
     vector<int> index;//能跳到的最大距离
@@ -863,19 +865,12 @@ string remove_k_nums(string s,int k)
 //旅行商问题
 
 /***************************************************************************/
-/*回溯法*/
+/*DFS回溯法*/
 /***************************************************************************/
-
 //已知一个数为C，一个长度为n的无序的数组，分别是数w1,w2,...,wn，能否从这n个数中找到若干个数使其和等于数C,要求找出所有满足上述条件的解
-
-/***************************************************************************/
-/*DFS*/
-/***************************************************************************/
-
 //组合数
-
 //数组，目标数，开始索引，临时数组，输出结果
-void dfs(vector<int>& data,int target,int start,vector<int>& temp,vector<vector<int> >& res)
+void dfs1(vector<int>& data,int target,int start,vector<int>& temp,vector<vector<int> >& res)
 {
     if(target<0)
         return;
@@ -891,10 +886,10 @@ void dfs(vector<int>& data,int target,int start,vector<int>& temp,vector<vector<
     {
         for(int i=start;i<data.size();i++)
         {
-//            if(i>start&&data[i]==data[i-1])
-//                continue;
+            if(i>start&&data[i]==data[i-1]) //去掉重复
+                continue;
             temp.push_back(data[i]);
-            dfs(data,target-data[i],i+1,temp,res);//若无限制次数则i+1->i
+            dfs1(data,target-data[i],i+1,temp,res);//若无限制次数则i+1->i
             temp.pop_back();
         }
     }
@@ -908,7 +903,7 @@ vector<vector<int> > CombSum(vector<int>& data,int target)
     
     vector<int> temp;
     sort(data.begin(),data.end());
-    dfs(data,target,0,temp,res);
+    dfs1(data,target,0,temp,res);
     return res;
 }
 
@@ -921,7 +916,7 @@ void swap(char& a,char& b)
     b=temp;
 }
 
-void dfs(string str,int start,vector<string> &res)
+void dfs2(string str,int start,vector<string> &res)
 {
     //退出条件
     if(start==str.size()-1)
@@ -934,11 +929,10 @@ void dfs(string str,int start,vector<string> &res)
         for(int i=start;i<str.size();i++)
         {
             swap(str[start],str[i]);
-            dfs(str,i+1,res);
+            dfs2(str,i+1,res);
             swap(str[start],str[i]);
         }
-    }
-    
+    } 
 }
 
 vector<string> Permutation(string str)
@@ -947,9 +941,115 @@ vector<string> Permutation(string str)
     if(str.empty())
         return res;
     
-    dfs(str,0,res);
+    dfs2(str,0,res);
     sort(res.begin(),res.end());
     return res;
+}
+
+int dfs3(vector<vector<int> >& data,int i,int j)
+{
+    data[i][j]=0;//防止遍历过的再次进入
+    int cur=1;
+    //尝试向左
+    if(i-1>=0&&data[i-1][j]==1)
+        cur+=dfs3(data,i-1,j);
+    //尝试向右
+    if(i+1<data.size()&&data[i+1][j]==1)
+        cur+=dfs3(data,i+1,j);
+    //尝试向下
+    if(j-1>=0&&data[i][j-1]==1)
+        cur+=dfs3(data,i,j-1);
+    //尝试向上
+    if(j+1<data[0].size()&&data[i][j+1]==1)
+        cur+=dfs3(data,i,j+1);
+
+    return cur;    
+}
+
+//01数组最大岛的面积
+int max_land01(vector<vector<int> > data)
+{
+    if(data.empty())
+        return -1;
+
+    int res=0;
+    int cols=data.size();
+    int rows=data[0].size();
+    for(int i=0;i<cols;i++)
+    {
+        for(int j=0;j<rows;j++)
+        {
+            if(data[i][j]==1)
+            {
+                res=max(res,dfs3(data,i,j));
+            }   
+        }
+    }
+    return res;
+}
+
+//01数组岛的个数
+int nums_land01(vector<vector<int> > data)
+{
+    if(data.empty())
+        return -1;
+
+    int res=0;
+    int cols=data.size();
+    int rows=data[0].size();
+    for(int i=0;i<cols;i++)
+    {
+        for(int j=0;j<rows;j++)
+        {
+            if(data[i][j]==1)
+            {
+                dfs3(data,i,j);
+                res++;
+            }   
+        }
+    }
+    return res;
+}
+
+//矩阵中的路径
+bool dfs(vector<vector<char> > &data,string s,int u,int x,int y)
+{
+    //1.退出条件
+    if(data[x][y]!=s[u])
+        return false;
+    if(u==s.size()-1)
+        return true;
+    
+    char t=data[x][y];
+    data[x][y]='*';
+    //尝试向左
+    if(x-1>=0&&dfs(data,s,u+1,x-1,y))
+        return true;
+    //尝试向右
+    if(x+1<data.size()&&dfs(data,s,u+1,x+1,y))
+        return true;
+    //尝试向上
+    if(y-1>=0&&dfs(data,s,u+1,x,y-1))
+        return true;
+    //尝试向下
+    if(y+1<data[0].size()&&dfs(data,s,u+1,x,y+1))
+        return true;
+        
+    data[x][y]=t;
+    return false;
+}
+
+bool hasPath(vector<vector<char> > &data,string s)
+{
+    for(int i=0;i<data.size();i++)
+    {
+        for(int j=0;j<data[0].size();j++)
+        {
+            if(dfs(data,s,0,i,j))
+                return true;
+        }
+    }
+    return false;
 }
 
 #endif

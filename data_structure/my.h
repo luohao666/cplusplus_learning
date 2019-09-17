@@ -65,6 +65,7 @@ int lastRemain2(int n,int m)
     return q.front();
 }
 
+//单例:只生成一次对象并且提供公共借口
 class Singleton
 {
     public:
@@ -81,6 +82,36 @@ class Singleton
         
     private:
         Singleton(){};
+};
+
+//智能指针
+template<typename T>
+class smart_pt
+{
+    public:
+        smart_pt(T* pt):_pt(pt)
+        {
+
+        }
+
+        ~smart_pt()
+        {
+            if(_pt)
+                delete _pt;
+        }
+
+        T& operator*()
+        {
+            return *_pt;
+        }
+
+        T* operator->()
+        {
+            return _pt;
+        }
+
+    private:
+        T* _pt;
 };
 
 /************************************************ */

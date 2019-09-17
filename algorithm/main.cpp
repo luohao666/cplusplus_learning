@@ -202,8 +202,48 @@ int main(int argc,char* argv[])
     cout<<remove_k_nums(s,3)<<endl;
 */
 
+
     int a[10]={2,5,2,1,2};
     vector<int> data(a,a+5);
     CombSum(data,5);
+
+
+/* 
+    vector<vector<int> > data;
+    int a1[4]={1,1,0,0};
+    vector<int> d1(a1,a1+4);
+    data.push_back(d1);
+    int a2[4]={1,0,1,0};
+    vector<int> d2(a2,a2+4);
+    data.push_back(d2);
+    int a3[4]={1,1,0,0};
+    vector<int> d3(a3,a3+4);
+    data.push_back(d3);   
+    int a4[4]={1,0,0,0};
+    vector<int> d4(a4,a4+4);
+    data.push_back(d4);
+    cout<<max_land01(data)<<endl;
+    cout<<nums_land01(data)<<endl;
+*/
+
+/* 
+    vector<vector<char> > data;
+    char a1[4]={'a','b','t','g'};
+    vector<char> d1(a1,a1+4);
+    data.push_back(d1);
+    char a2[4]={'c','f','c','s'};
+    vector<char> d2(a2,a2+4);
+    data.push_back(d2);
+    char a3[4]={'j','d','e','h'};
+    vector<char> d3(a3,a3+4);
+    data.push_back(d3);   
+    char a4[4]={'h','q','w','t'};
+    vector<char> d4(a4,a4+4);
+    data.push_back(d4);
+
+    string s="adec";
+    cout<<hasPath(data,s)<<endl;
+*/
+
     return 0;
 }

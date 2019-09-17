@@ -1,0 +1,6 @@
+/home/snorker/Documents/luohao/cplusplus_learning/oppo/build/CMakeFiles/edit_cache.dir
+/home/snorker/Documents/luohao/cplusplus_learning/oppo/build/CMakeFiles/rebuild_cache.dir
+/home/snorker/Documents/luohao/cplusplus_learning/oppo/build/CMakeFiles/main.dir
+/home/snorker/Documents/luohao/cplusplus_learning/oppo/build/CMakeFiles/main2.dir
+/home/snorker/Documents/luohao/cplusplus_learning/oppo/build/CMakeFiles/main3.dir
+/home/snorker/Documents/luohao/cplusplus_learning/oppo/build/CMakeFiles/main5.dir

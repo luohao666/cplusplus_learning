@@ -84,7 +84,6 @@ void mid2(TreeNode<T> *root)
             cout<<cur->val<<endl;
             cur=cur->right;
         }
-        
     }
 }
 
