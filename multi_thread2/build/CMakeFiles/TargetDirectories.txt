@@ -1,0 +1,4 @@
+/home/luohao/Documents/cplusplus_learning/multi_thread2/build/CMakeFiles/rebuild_cache.dir
+/home/luohao/Documents/cplusplus_learning/multi_thread2/build/CMakeFiles/edit_cache.dir
+/home/luohao/Documents/cplusplus_learning/multi_thread2/build/CMakeFiles/main.dir
+/home/luohao/Documents/cplusplus_learning/multi_thread2/build/CMakeFiles/test.dir

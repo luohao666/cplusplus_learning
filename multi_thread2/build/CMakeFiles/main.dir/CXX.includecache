@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/mthread.h
+pthread.h
+-
+iostream
+-
+unistd.h
+-
+
+/home/luohao/Documents/cplusplus_learning/multi_thread2/main.cpp
+iostream
+-
+mthread.h
+/home/luohao/Documents/cplusplus_learning/multi_thread2/mthread.h
+
