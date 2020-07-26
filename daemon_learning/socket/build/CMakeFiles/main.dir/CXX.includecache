@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/luohao/Documents/cplusplus_learning/daemon_learning/socket/main.cpp
+iostream
+-
+DetectInterface.h
+-
+AdjustVolume.h
+-
+
