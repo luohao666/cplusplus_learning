@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/luohao/Documents/cplusplus_learning/multi_thread2/test.cpp
+/home/luohao/Documents/cplusplus_learning/multi_thread2/test2.cpp
+unistd.h
+-
 pthread.h
 -
 stdio.h
--
-unistd.h
 -
 
